@@ -1,0 +1,11 @@
+1) Tambien te trar los equipos asociados cuando se trae por name, no solamente por ID.
+
+2) Cuando se busca por name, no es case-sensitive y busca coinicidencias en name y lastname (o name.forename and name.surename)
+3) Cuando se hace POST de driver:
+
+    a) Si se manda el array de equipos, los busca y encuentra a pesar de mayusc y minusc y de espacios adelante y atras.
+    b) Si todos los valores del array estan son encontrados, los agrega y te dice que equipos se agregaron correctamente (todos)
+    c) Si alguno de los valores (o todos) los que se mandan en el array no se encuentra/n en la base de datos Teams, no lo agrega y te
+    dice cual fueron los equipos que no se pudieron agregar.
+    d) Si no se manda el atributo teams, o se manda un array vacio, te dice que se creo correctamente y que no se enviaron teams.
+

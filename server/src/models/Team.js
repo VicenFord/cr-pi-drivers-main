@@ -4,9 +4,8 @@ module.exports = (sequelize) => {
     sequelize.define('Team', {
         id: {
             type: DataTypes.UUID,
-            allowNull: false,
-            primaryKey: true,
             defaultValue: DataTypes.UUIDV4,
+            primaryKey: true,
         },
         name: {
             type: DataTypes.STRING,
@@ -14,6 +13,5 @@ module.exports = (sequelize) => {
         },
     }, {
         timestamps: false,
-        freezeTableName: true
     });
 }
