@@ -4,17 +4,25 @@ import './homePage.css'
 import Card from '../../Card/Card'
 import SearchBar from '../../SearchBar/SearchBar';
 import Pagination from '../../Pagination/Pagination';
+import { getAllDrivers } from '../../../redux/actions/getAllDrivers';
 import { getDriversPerPage } from '../../../redux/actions/getDriversPerPage';
 
 const HomePage = () => {
     const dispatch = useDispatch();
     
+    const allDrivers = useSelector(state => state.allDrivers);
     const driversPerPage = useSelector(state => state.driversPerPage);
     const filteredDriversByName = useSelector(state => state.filteredDriversByName);
+    const currentPage = useSelector(state => state.currentPage);
+
 
     useEffect(() => {
-      dispatch(getDriversPerPage(1))
-    }, [])
+        if (allDrivers.length === 0) {
+          dispatch(getAllDrivers());
+        } else {
+          dispatch(getDriversPerPage(currentPage));
+        }
+      }, [allDrivers]);
 
 
     return (

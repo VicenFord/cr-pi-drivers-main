@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './driverDetail.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { cleanDriverDetail } from '../../../redux/actions/cleanDriverDeetail';
+import { cleanDriverDetail } from '../../../redux/actions/cleanDriverDetail';
 
 const DriverDetail = () => {
     const dispatch = useDispatch();
@@ -20,9 +20,7 @@ const DriverDetail = () => {
     <div className="detailContainer">
         <div className='detailWrapper'>
                 
-                <img src={lastname ? image : image?.url} alt={name} />
-                
-
+            <img src={lastname ? image : image?.url === "" ? `../../../assets/images/placeholderDriver.png` : image?.url} alt={name} />
 
             <div className='cardBody'>
                 <h1>{ lastname ? `${name} ${lastname}` : `${name?.forename} ${name?.surname}` }</h1>

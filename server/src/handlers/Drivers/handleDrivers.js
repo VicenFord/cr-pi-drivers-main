@@ -1,4 +1,3 @@
-const getDriversPerPage = require('../../controllers/Drivers/getDriversPerPage');
 const getAllDrivers = require('../../controllers/Drivers/getAllDrivers');
 const getDriverByID = require('../../controllers/Drivers/getDriverByID');
 const postDriver = require('../../controllers/Drivers/postDriver');
@@ -9,7 +8,6 @@ const handleGetAllDrivers = async (req, res) => {
     const { name, page } = req.query
     if (id) return handleGetDriverByID(req, res);
     if (name) return handleGetDriverByName(req, res);
-    if (page) return handleGetDriversPerPage(req, res);
     
     try {
         const result = await getAllDrivers();
@@ -20,16 +18,6 @@ const handleGetAllDrivers = async (req, res) => {
     }
 }
 
-const handleGetDriversPerPage = async (req, res) => {
-    try {
-        const { page } = req.query
-        const result = await getDriversPerPage(page);
-        res.status(200).json(result);
-
-    } catch (error) {
-        res.status(500).json({ message: error.message })
-    }
-}
 
 const handleGetDriverByID = async (req, res) => {
     try {
@@ -65,7 +53,6 @@ const handlePostDriver = async (req, res) => {
 
 module.exports = {
     handleGetAllDrivers,
-    handleGetDriversPerPage,
     handleGetDriverByID,
     handleGetDriverByName,
     handlePostDriver,
