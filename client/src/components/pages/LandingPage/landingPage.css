@@ -1,0 +1,87 @@
+#landingPage {
+    position: absolute;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -2;
+    display: flex;
+    justify-content: center;
+}
+
+#bgVideo {
+    position: inherit;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    filter: blur(6px);
+    z-index: -1;
+}
+
+#containerLandingPage {
+    position: inherit;
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#F1logo {
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+    margin: 0px;
+    padding: 0px;
+}
+
+#containerLandingPage div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+}
+#containerLandingPage div p {
+    color: var(--pallete-cream);
+}
+#containerLandingPage div p a {
+    color: var(--pallete-cream);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+#containerLandingPage div p a:hover {
+    color: var(--pallete-red);
+}
+#buttonLanding {
+    background: 0 0;
+    border: 3px solid var(--pallete-cream);
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 30px;
+    overflow: hidden;
+    padding: 12px 20px;
+    text-overflow: ellipsis;
+    transition: all .2s ease-out;
+    white-space: nowrap;
+    color: var(--pallete-cream);
+    font-weight: 600;
+    font-style: italic;
+}
+#buttonLanding:hover {
+    box-shadow: 7px 7px 0 #000000d6;
+    transform: translate(-4px,-4px);
+    background-color: var(--pallete-cream);
+    color: var(--pallete-red);
+    border-color: var(--pallete-red);
+}
+#buttonLanding:focus-visible{
+    outline-offset: 1px;
+    box-shadow: 7px 7px 0 #000000d6;
+    transform: translate(-4px,-4px);
+    background-color: var(--pallete-cream);
+    color: var(--pallete-red);
+    border-color: var(--pallete-red);
+}
+

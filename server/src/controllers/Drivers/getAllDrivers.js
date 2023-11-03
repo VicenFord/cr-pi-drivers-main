@@ -1,13 +1,19 @@
 const axios = require("axios");
 require("dotenv").config();
 const { DB_HOST, API_PORT } = process.env;
-const { Driver } = require('../../db');
+const { Driver, Team } = require('../../db');
 
 
 const getAllDrivers = async (req, res) => {
     try {
         const { data } = await axios(`http://${DB_HOST}:${API_PORT}/drivers`);
-        const driversDB = await Driver.findAll();
+        const driversDB = await Driver.findAll({
+            include: {
+                model: Team,
+                attributes: ['name'],
+                through: { attributes: [] }
+            }
+        });
 
         return [...driversDB, ...data];
         

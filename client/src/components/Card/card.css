@@ -1,0 +1,58 @@
+.link{
+    text-decoration: none;
+}
+
+.cardWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 400px;
+    width: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: var(--pallete-red);
+    border: 5px solid var(--pallete-brown);
+    border-radius: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+.cardWrapper img {
+    height: 70%;
+    width: 100%;
+    object-fit: fill;
+}
+.cardWrapper div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 30%;
+    width: fit-content;
+}
+.cardWrapper div h1 {
+    color: var(--pallete-yellow);
+    font-size: 30px;
+    line-height: 25px;
+    font-weight: 600;
+    text-align: center;
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 0;
+}
+.cardWrapper div h3 {
+    color: var(--pallete-cream);
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 20px;
+    margin: 0;
+    padding: 0;
+}
+.cardWrapper div p {
+    color: var(--pallete-cream);
+    font-size: 15px;
+    text-align: center;
+    line-height: 15px;
+    margin: 0;
+    padding: 0;
+}

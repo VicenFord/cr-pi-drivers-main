@@ -1,0 +1,50 @@
+.detailContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.detailWrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    height: fit-content;
+    max-width: 1200px;
+    width: fit-content;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: var(--pallete-red);
+    border: 5px solid var(--pallete-brown); 
+    border-radius: 20px;
+    padding: 0px;
+}
+.detailWrapper img {
+    height: 100%;
+    min-width: 400px;
+    max-width: 400px;
+    object-fit: cover;
+}
+
+.cardBody {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    padding: 0 20px;
+}
+.detailWrapper div h1 {
+    color: var(--pallete-yellow);
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.infoDriver{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: self-start;
+}

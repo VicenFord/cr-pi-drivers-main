@@ -1,0 +1,40 @@
+.buttonContainer{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.buttonPagination{
+    background-color: var(--pallete-cream);
+    color: var(--pallete-blue);
+    border: none;
+    margin: 2px;
+    border: 2px solid var(--pallete-blue);
+    border-radius: 3px;
+    font-size: 20px;
+    min-width: 40px;
+    min-height: 40px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+}
+.buttonPagination:hover{
+    background-color: var(--pallete-blue);
+    color: var(--pallete-cream);
+    border-color: var(--pallete-cream);
+}
+
+.disabled{
+    background-color: gray;
+    color: var(--pallete-cream);
+    border-color: black;
+    cursor: default;
+}
+
+.active{
+    background-color: var(--pallete-red);
+    color: var(--pallete-cream);
+}
