@@ -6,9 +6,9 @@ import { useDispatch } from 'react-redux';
 
 const Card = ( {driver} ) => {
   const dispatch = useDispatch();
-    const { id, name, lastname, image, teams, Teams, url } = driver;
+  const { id, name, lastname, image, teams, Teams } = driver;
     
-    const teamsDriverDB = Teams?.length!==0 ? `${Teams?.map((team) => `${team.name} `).join(', ')}` : 'This driver has no teams'; 
+    const teamsDriverDB = Teams?.length!==0 ? `${Teams?.map((team) => `${team} `).join(', ')}` : 'This driver has no teams'; 
 
   return (
     <Link className='link' to={`/drivers/${id}`} onClick={()=>{dispatch(getDriverDetail(id))}}>

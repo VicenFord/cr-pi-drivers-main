@@ -4,23 +4,30 @@ import { getDriversPerPage } from '../../redux/actions/getDriversPerPage'
 import { getAllDrivers } from '../../redux/actions/getAllDrivers'
 import { setCurrentPage } from '../../redux/actions/setCurrentPage'
 import { useDispatch, useSelector } from 'react-redux';
+import { setPagesPagination } from '../../redux/actions/setPagesPagination';
 
 
 const Pagination = () => {
     const dispatch = useDispatch()
     const allDrivers = useSelector(state => state.allDrivers);
+    const filteredDriversByName = useSelector(state => state.filteredDriversByName);
+    const resultsPerPage = useSelector(state => state.resultsPerPage);
+    const pagesPagination = useSelector(state => state.pagesPagination);
     const currentPage = useSelector(state => state.currentPage);
 
     const [totalPages, setTotalPages] = useState(null)
 
     let pag = []
-    for (let i = 1; i <= totalPages; i++) {
+    for (let i = 1; i <= pagesPagination; i++) {
         pag.push(i)
     }
 
     const getTotalPages = async () => {
         try {
-            setTotalPages(Math.ceil(allDrivers.length / 9))
+            if(filteredDriversByName?.length > 0) {
+                return dispatch(setPagesPagination(Math.ceil(filteredDriversByName?.length / 9)))
+            }
+            return dispatch(setPagesPagination(Math.ceil(allDrivers.length / 9)))
         } catch (error) {
             throw new Error(error.message);            
         }        
@@ -39,7 +46,7 @@ const Pagination = () => {
    }
 
    const handleNextPage = () => {
-        if (parseInt(currentPage) < parseInt(totalPages)) {
+        if (parseInt(currentPage) < parseInt(pagesPagination)) {
             dispatch(setCurrentPage(parseInt(currentPage) + 1))
             dispatch(getDriversPerPage(parseInt(currentPage) + 1))
         }
@@ -47,12 +54,17 @@ const Pagination = () => {
 
     useEffect(() => {
         if (allDrivers.length === 0) {
-          dispatch(getAllDrivers());
+            dispatch(getAllDrivers());
         }else{
             getTotalPages();
             dispatch(getDriversPerPage(currentPage))
         }
     }, [allDrivers])
+
+    useEffect(() => {
+        console.log('holaaaa');
+       getTotalPages();
+    }, [filteredDriversByName])
 
 
 
@@ -64,7 +76,7 @@ const Pagination = () => {
                 <button className={parseInt(currentPage) === page ? 'buttonPagination active' : 'buttonPagination'} key={page} onClick={handleChange} value={page}>{page}</button>
             )
             })}
-        <button className={parseInt(currentPage) === parseInt(totalPages) ? 'buttonPagination disabled' : 'buttonPagination'} onClick={handleNextPage}>Next <i className="fas fa-arrow-right"></i></button>
+        <button className={parseInt(currentPage) === parseInt(pagesPagination) ? 'buttonPagination disabled' : 'buttonPagination'} onClick={handleNextPage}>Next <i className="fas fa-arrow-right"></i></button>
     </div>
   )
 }

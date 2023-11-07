@@ -45,7 +45,7 @@ const getDriverByName = async (name) => {
         const allResultsFound = [...driversDBfoundWithTeams, ...resultAPIfound]
 
         if(allResultsFound.length > 0){
-            return allResultsFound.slice(0, 15); //Returns first 15 results
+            return allResultsFound; //Le saque el limit de 15 para que funcione bien el paginado
         }
 
         return {

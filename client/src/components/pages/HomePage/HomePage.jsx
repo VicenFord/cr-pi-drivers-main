@@ -6,13 +6,15 @@ import SearchBar from '../../SearchBar/SearchBar';
 import Pagination from '../../Pagination/Pagination';
 import { getAllDrivers } from '../../../redux/actions/getAllDrivers';
 import { getDriversPerPage } from '../../../redux/actions/getDriversPerPage';
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
     const dispatch = useDispatch();
     
     const allDrivers = useSelector(state => state.allDrivers);
-    const driversPerPage = useSelector(state => state.driversPerPage);
     const filteredDriversByName = useSelector(state => state.filteredDriversByName);
+    const driversPerPage = useSelector(state => state.driversPerPage); //es allDrivers pero en el reducer se hace un slice.
+    const resultsPerPage = useSelector(state => state.resultsPerPage);
     const currentPage = useSelector(state => state.currentPage);
 
 
@@ -22,7 +24,7 @@ const HomePage = () => {
         } else {
           dispatch(getDriversPerPage(currentPage));
         }
-      }, [allDrivers]);
+      }, [allDrivers, filteredDriversByName]);
 
 
     return (
@@ -30,12 +32,14 @@ const HomePage = () => {
 
             <SearchBar />
 
+            <Link to='/create'>Crea un driver</Link>
+
 
                 {filteredDriversByName?.length > 0 ?
                 
                 <div id="cardsContainer">
                     {
-                    filteredDriversByName?.map((driver) => {
+                    resultsPerPage?.map((driver) => {
                         return (
                             <Card key={driver.id} driver={driver} />
                         )})
@@ -62,7 +66,7 @@ const HomePage = () => {
             
             }
             
-            {filteredDriversByName?.length === 0 && <Pagination />}
+            <Pagination />
             
         </div>
     )

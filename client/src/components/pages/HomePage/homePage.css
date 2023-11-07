@@ -7,10 +7,8 @@
 
 #cardsContainer{
     width: 70%;
-    display: grid;
-    place-items: center;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    grid-column-gap: 40px;
-    grid-row-gap: 40px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: row wrap;
+    row-gap: 30px;
 }

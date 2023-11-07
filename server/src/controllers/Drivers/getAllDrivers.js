@@ -15,6 +15,17 @@ const getAllDrivers = async (req, res) => {
             }
         });
 
+        if(driversDB){
+            const driversDBwithTeams = driversDB.map(driverDB => {
+                return {
+                    ...driverDB.dataValues,
+                    Teams: driverDB.Teams.map((team) => team.name)
+                }
+            })
+
+            return [...driversDBwithTeams, ...data];
+        }
+
         return [...driversDB, ...data];
         
     } catch (error) {
