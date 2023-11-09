@@ -62,7 +62,6 @@ const Pagination = () => {
     }, [allDrivers])
 
     useEffect(() => {
-        console.log('holaaaa');
        getTotalPages();
     }, [filteredDriversByName])
 

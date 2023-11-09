@@ -12,7 +12,6 @@ export const getDriverDetail = (id) => {
             })
             
         } catch (error) {
-            console.log('llega el id', id);
             throw new Error(error.message);
         }
     }

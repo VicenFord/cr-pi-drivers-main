@@ -58,6 +58,8 @@
   .inputs label {
     margin-top: 12px;
     margin-bottom: 2px;
+    width: fit-content;
+    display: inline-block;
   }
   
   .inputs label:nth-of-type(2) {
@@ -105,7 +107,7 @@
   
   .inputs button {
     color: white;
-    margin-top: 20px;
+    margin: 20px 0;
     background: #1DA1F2;
     height: 40px;
     border-radius: 20px;
@@ -113,6 +115,12 @@
     font-weight: 900;
     box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px white;
     transition: 0.5s;
+  }
+  .disabled{
+    opacity: 0.5;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+    background-color: #cbced1 !important;
   }
   
   .inputs button:hover {
@@ -130,3 +138,108 @@
     border-radius: 10px;
     padding: 2px;
   }
+
+  .error{
+    color: red;
+    margin: 0px;
+    margin-left: 5px;
+    font-size: 14px;
+    width: fit-content;
+    display: inline-block;
+  }
+
+  .success{
+    color: green;
+    margin: 5px 0;
+    margin-left: 5px;
+    font-size: 20px;
+    text-align: center;
+    background-color: #8fbc8f7d;
+    border-radius: 10px;
+    border: 2px solid darkseagreen;
+    line-height: 22px;
+  }
+
+  .red{
+    color: red;
+    background-color: #cd5c5c6b;
+    border-color: indianred;
+  }
+
+  .con-tooltip {
+    display: inline-block;
+    width: fit-content !important;
+    transition: all 0.3s ease-in-out;  
+  }
+  
+  /*tooltip */
+  .tooltip {
+    visibility: hidden;
+    z-index: 1;
+    opacity: .40;
+    
+    width: 170%;
+    max-height: 400px;
+    overflow: scroll;
+    padding: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+  
+    background-color: #e9e7e7a4;
+    border-radius: 20px;
+    box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+    color: #333;
+    
+    position: absolute;
+    top:-140%;
+    left: -20%;
+    
+  
+    border-radius: 9px;
+    font: 16px;
+  
+    transform: translateY(9px);
+    transition: all 0.3s ease-in-out;
+    
+    box-shadow: 0 0 3px rgba(56, 54, 54, 0.86);
+  }
+  
+  
+  /* tooltip  after*/
+  .tooltip::after {
+    content: " ";
+    width: 0;
+    height: 0;
+    
+    border-style: solid;
+    border-width: 12px 12.5px 0 12.5px;
+    border-color: #333 transparent transparent transparent;
+  
+    position: absolute;  
+  }
+  
+  .con-tooltip:hover .tooltip{
+    visibility: visible;
+    transform: translateY(-300px);
+    opacity: 1;
+    transition: .2s linear;
+    animation: 0.7s ease-in-out infinite  alternate;
+  }
+  
+  /*hover ToolTip*/
+  .right:hover {transform: translateX(0px); }
+  
+  /*right*/
+  
+  .right .tooltip { top:-20%; left:105%; }
+  
+  .right .tooltip::after{
+    top:40%;
+    left:-9%;
+    transform: rotate(90deg);
+  }
+
+  

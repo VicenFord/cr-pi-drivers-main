@@ -6,13 +6,18 @@ const { Op } = require("sequelize");
 const sequelize = require("sequelize");
 
 const postDriver = async ( { name, lastname, description, image, nationality, birthDate, teams} ) => {
+    const isURL = (valor) => {
+        const RegexURL = /^(?=.*[.:])(?=.*\/).*$/;
+        return RegexURL.test(valor);
+    }
+
     //crea validaciones antes de crear al Driver en la base de datos:
     if(!name || !lastname || !description || !nationality || !birthDate) {
         throw new Error('Cannot create, some data is missing');
-    }
+    }    
 
     try {
-        const newDriver = await Driver.create({ name, lastname, description, image: image ? image : 'https://static.vecteezy.com/system/resources/thumbnails/028/338/514/small/driver-thick-line-filled-colors-icon-for-personal-and-commercial-use-free-vector.jpg',
+        const newDriver = await Driver.create({ name, lastname, description, image: isURL(image) ? image : 'https://img.freepik.com/premium-photo/formula-one-racing-driver-helmet-before-start-competition-ai-generated_201606-6181.jpg',
         nationality, birthDate });
 
         /* Explicacion del codigo de abajo: RELACION DRIVER - TEAM:
@@ -41,21 +46,21 @@ const postDriver = async ( { name, lastname, description, image, nationality, bi
         
             if(teamsNotFound.length > 0){
                 return{ //Return if teams were sent and some were not in the db
-                    ok: 'New driver created successfully',
-                    message: `These are the teams that were not added to the driver because they were not found: '${teamsNotFound.map(team => team?.trim())}'`
+                    ok: 'New driver created successfully!',
+                    message: `These teams were not added to the driver because they were not found: '${teamsNotFound.map(team => team?.trim())}'`
                 }
             }
 
             //Return if all teams were in the DB
             return {
-                ok: 'New driver created successfully',
+                ok: 'New driver created successfully!',
                 message: `All teams were added to the driver: ${teamInstances.map(team => team?.dataValues?.name)}`
             };
         }
 
         //Return if no teams were sent
         return {
-            ok: 'New driver created successfully',
+            ok: 'New driver created successfully!',
             message: 'No teams were sent'
         }; 
         

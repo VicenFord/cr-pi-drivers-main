@@ -1,6 +1,7 @@
 import { GET_ALL_DRIVERS, GET_DRIVERS_PER_PAGE, GET_DRIVERS_BY_NAME,
 GET_DRIVER_DETAIL, CLEAN_DRIVER_DETAIL, CLEAN_DRIVERS_BY_NAME, FILTER_DRIVERS_BY_TEAMS, FILTER_DRIVERS_BY_ORIGIN,
-ORDER_DRIVERS_BY_NAME, ORDER_DRIVERS_BY_BIRTHDATE, SET_CURRENT_PAGE, SET_SEARCH, SET_PAGES_PAGINATION} from "../action-types/ACTION_TYPES";
+ORDER_DRIVERS_BY_NAME, ORDER_DRIVERS_BY_BIRTHDATE, SET_CURRENT_PAGE, SET_SEARCH, SET_PAGES_PAGINATION, GET_ALL_TEAMS,
+CREATE_DRIVER, CLEAR_CREATE_MESSAGE} from "../action-types/ACTION_TYPES";
 
 const initialState = {
     allDrivers: [],
@@ -11,6 +12,8 @@ const initialState = {
     pagesPagination: null,
     driversPerPage: [],
     search: '',
+    allTeams: [],
+    createDriverMessage: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -18,6 +21,15 @@ const reducer = (state = initialState, action) => {
         
         case GET_ALL_DRIVERS:
             return {...state, allDrivers: action.payload};
+
+        case GET_ALL_TEAMS:
+            return {...state, allTeams: action.payload};
+
+        case CREATE_DRIVER:
+            return {...state, createDriverMessage: action.payload};
+
+        case CLEAR_CREATE_MESSAGE:
+            return {...state, createDriverMessage: null};
 
         case GET_DRIVERS_BY_NAME:
             const pageNum = action.payload
