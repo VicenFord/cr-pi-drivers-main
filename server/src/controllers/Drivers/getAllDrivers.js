@@ -23,10 +23,10 @@ const getAllDrivers = async (req, res) => {
                 }
             })
 
-            return [...driversDBwithTeams, ...data];
+            return [ ...data,...driversDBwithTeams];
         }
 
-        return [...driversDB, ...data];
+        return [...data, ...driversDB];
         
     } catch (error) {
         res.status(500).json({ message: error.message })        

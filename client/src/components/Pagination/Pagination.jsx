@@ -10,12 +10,14 @@ import { setPagesPagination } from '../../redux/actions/setPagesPagination';
 const Pagination = () => {
     const dispatch = useDispatch()
     const allDrivers = useSelector(state => state.allDrivers);
+    const allDriversFiltered = useSelector(state => state.allDriversFiltered);
     const filteredDriversByName = useSelector(state => state.filteredDriversByName);
+    const filteredDriversByTeam = useSelector(state => state.filteredDriversByTeam);
+    const filteredDriversByOrigin = useSelector(state => state.filteredDriversByOrigin);
+    const filtersOriginPerPage = useSelector(state => state.filtersOriginPerPage);
     const resultsPerPage = useSelector(state => state.resultsPerPage);
     const pagesPagination = useSelector(state => state.pagesPagination);
     const currentPage = useSelector(state => state.currentPage);
-
-    const [totalPages, setTotalPages] = useState(null)
 
     let pag = []
     for (let i = 1; i <= pagesPagination; i++) {
@@ -24,8 +26,8 @@ const Pagination = () => {
 
     const getTotalPages = async () => {
         try {
-            if(filteredDriversByName?.length > 0) {
-                return dispatch(setPagesPagination(Math.ceil(filteredDriversByName?.length / 9)))
+            if(allDriversFiltered?.length > 0) {
+                return dispatch(setPagesPagination(Math.ceil(allDriversFiltered?.length / 9)))
             }
             return dispatch(setPagesPagination(Math.ceil(allDrivers.length / 9)))
         } catch (error) {
@@ -63,7 +65,7 @@ const Pagination = () => {
 
     useEffect(() => {
        getTotalPages();
-    }, [filteredDriversByName])
+    }, [filteredDriversByTeam, filteredDriversByOrigin, allDriversFiltered])
 
 
 

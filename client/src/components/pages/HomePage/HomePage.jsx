@@ -7,24 +7,28 @@ import Pagination from '../../Pagination/Pagination';
 import { getAllDrivers } from '../../../redux/actions/getAllDrivers';
 import { getDriversPerPage } from '../../../redux/actions/getDriversPerPage';
 import { Link } from 'react-router-dom';
+import Filters from '../../Filters/Filters';
 
 const HomePage = () => {
     const dispatch = useDispatch();
     
     const allDrivers = useSelector(state => state.allDrivers);
+    const allDriversFiltered = useSelector(state => state.allDriversFiltered);
     const filteredDriversByName = useSelector(state => state.filteredDriversByName);
-    const driversPerPage = useSelector(state => state.driversPerPage); //es allDrivers pero en el reducer se hace un slice.
+    const filteredDriversByTeam = useSelector(state => state.filteredDriversByTeam);
+    const filteredDriversByOrigin = useSelector(state => state.filteredDriversByOrigin);
     const resultsPerPage = useSelector(state => state.resultsPerPage);
     const currentPage = useSelector(state => state.currentPage);
 
 
     useEffect(() => {
-        if (allDrivers.length === 0) {
+        if (allDrivers.length === 0 ) {
           dispatch(getAllDrivers());
         } else {
           dispatch(getDriversPerPage(currentPage));
         }
-      }, [allDrivers, filteredDriversByName]);
+
+      }, [allDrivers, filteredDriversByName, filteredDriversByTeam, filteredDriversByOrigin, allDriversFiltered]);
 
 
     return (
@@ -34,8 +38,10 @@ const HomePage = () => {
 
             <Link to='/create'>Crea un driver</Link>
 
+            <Filters />
 
-                {filteredDriversByName?.length > 0 ?
+
+                {allDriversFiltered?.length > 0 ?
                 
                 <div id="cardsContainer">
                     {
@@ -44,21 +50,7 @@ const HomePage = () => {
                             <Card key={driver.id} driver={driver} />
                         )})
                     }
-                </div>
-
-                :
-
-                driversPerPage?.length > 0 ? 
-                
-                <div id="cardsContainer">
-                    {
-                    driversPerPage?.map((driver) => {
-                        return (
-                            <Card key={driver.id} driver={driver} />
-                        )})
-                    }
-                </div>
-                
+                </div>                
 
                 :
 
