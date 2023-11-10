@@ -41,8 +41,12 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         
         case GET_ALL_DRIVERS:
-            return {...state, allDrivers: action.payload,
-            allDriversFiltered : objetosRepetidos(state.allDrivers, action.payload),};
+            return {
+                ...state,
+                allDrivers: action.payload,
+                allDriversFiltered: [...state.allDrivers]
+            }
+
 
         case GET_ALL_TEAMS:
             return {...state, allTeams: action.payload};
@@ -70,7 +74,7 @@ const reducer = (state = initialState, action) => {
             };
 
         case CLEAN_DRIVERS_BY_NAME:
-            return {...state, allDriversFiltered: []};
+            return {...state, allDriversFiltered: [...state.allDrivers]};
 
         case GET_DRIVER_DETAIL:
             return {...state, driverDetail: action.payload};
